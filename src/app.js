@@ -34,6 +34,21 @@ app.get('/bantuan', (req, res) => {
     });
 });
 
+// Ini halaman berita
+app.get('/berita', (req, res) => {
+    res.render('berita', {
+        judul: 'Halaman Berita',
+        berita1: {
+            judul: 'Peresmian Gedung Baru',
+            isi: 'Pada hari ini, gedung baru perusahaan kami resmi diresmikan oleh CEO kami. Gedung ini dilengkapi dengan fasilitas modern dan teknologi terkini yang diharapkan dapat meningkatkan produktivitas dan kenyamanan bagi seluruh karyawan.'
+        },
+        berita2: {
+            judul: 'Peluncuran Produk Baru',
+            isi: 'Kami dengan bangga mengumumkan peluncuran produk terbaru kami, yaitu smartphone generasi terbaru yang dilengkapi dengan teknologi canggih dan fitur inovatif. Produk ini dirancang untuk memberikan pengalaman pengguna yang lebih baik dan memenuhi kebutuhan teknologi saat ini.'
+        }
+    });
+});
+
 // Ini halaman info cuaca
 app.get('/infocuaca', (req, res) => {
     if (!req.query.address) {
@@ -86,3 +101,8 @@ app.get('*', (req, res) => {
 app.listen(port, () => {
     console.log('Server berjalan pada port  '+ port);
 });
+
+// Halaman berita
+app.get("/berita/*", (req, res) => {
+    res.sendFile(__dirname + '/src/file_html/berita.hbs');
+  });
